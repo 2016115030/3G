@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<title>Get the top artists and their playcounts using last.fm API</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<script>
+$(document).ready(function() {
+    
+    var url = "https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=2a83bf423ea1f964b8c430dca20805dc&artist=cher&track=believe&format=json"
+
+    $.getJSON(url, function(json) {
+
+        var html = '';
+
+        $.each(json, function(i, item) {
+            html += "<p><a href=" + item.url + " target='_blank'>" + item.name + " - " + "<br>artist : " +item.artist.name + "</a></p>";
+        });
+
+        $('#result').append(html);
+    });
+});
+</script>
+
+<body>
+
+<div id="result"></div>
+
+</body>
+</html>
