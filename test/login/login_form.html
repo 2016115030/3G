@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="login_form.css">
+  </head>
+  <body>
+
+    <form action = "login.php" method="post">
+
+      <table class = "login_box">
+
+        <tr>
+
+          <td class = "label">
+            <label> ID </label>
+          </td>
+          <td>
+            <input type="text" name="id">
+          </td>
+        </tr>
+
+        <tr>
+          <td class="label">
+            <label> PW </label>
+          </td>
+          <td>
+            <input type="password" name="pw">
+          </td>
+        </tr>
+
+      </table>
+
+      <input type="submit" value="Sign in">
+      <input type="button" value="Sign up" onclick="window.open('member_join_form.html', 'popup',
+                                                    'width=600, height=400, left = 700, top=300')">
+
+    </form>
+
+
+  </body>
+</html>

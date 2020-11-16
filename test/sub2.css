@@ -1,0 +1,137 @@
+/*basic setting*/
+*
+{
+  margin : 0;
+  padding : 0;
+  -ms-overflow-style : none;
+}
+::-webkit-scrollbar
+{
+  display : none;
+}
+a
+{
+  text-decoration: none;
+}
+li
+{
+  style : none;
+}
+
+#main_web
+{
+  height : 970px;
+  float : left;
+}
+/* 좌측 css */
+#main_left
+{
+  color : white;
+  float : left;
+  width : 100px;
+  height : 970px;
+  background : #2c303c;
+}
+
+/* icon */
+#main_top_icon
+{
+  margin-top : 100px;
+}
+
+#main_bottom_icon
+{
+  margin-top : 250px;
+}
+.main_icon
+{
+  width : 40px;
+  height : 40px;
+  margin : 45px 0px 0px 27px;
+  border-radius : 7px 7px 7px 7px;
+}
+
+/* 우측 css */
+#main_right
+{
+  width : 1820px;
+  background : #080f21;
+  height:970px;
+  float : left;
+}
+
+/* 상단 바 css */
+#main_top
+{
+  height : 150px;
+}
+
+/* logo */
+#main_top .main_logo
+{
+  float : left;
+  width : 300px;
+  height : 100px;
+  color : #f9fcf6;
+  font-size : 30pt;
+  font-weight : bold;
+  text-align : center;
+  margin : 30px 0 0 50px;
+}
+
+/* menu */
+#main_top .main_menu
+{
+  float : left;
+  width : 800px;
+  height : 100px;
+  color : #8a898f;
+  font-size : 17pt;
+  line-height : 80px;
+  margin : 25px 0 0 100px;
+}
+
+/* sub content css */
+#sub2_content
+{
+  float : left;
+}
+
+.sub2_top
+{
+  width : 1803px;
+  height : 300px;
+  background : yellow;
+  float : left;
+}
+
+.sub2_top .album_img
+{
+  width : 250px;
+  height : 250px;
+  background : black;
+  float : left;
+  margin : 25px 0 0 100px;
+}
+
+.sub2_top .album_info
+{
+  width : 1000px;
+  heigth : 250px;
+  float : left;
+  margin : 25px 0 0 100px;
+}
+
+.sub2_bottom
+{
+  width : 1803px;
+  height : 520px;
+  background : green;
+  overflow : scroll;
+}
+
+.sub2_bottom .lyric
+{
+  width : 1000px;
+  margin : 25px 0 0 100px;
+}

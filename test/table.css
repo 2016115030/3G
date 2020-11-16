@@ -1,0 +1,25 @@
+table
+{
+  width : 1400px;
+  text-align : center;
+  cellspacing : 0;
+}
+
+tr
+{
+  color : white;
+}
+
+td
+{
+  width : 350px;
+  height : 90px;
+}
+.num
+{
+  width : 50px;
+}
+.time
+{
+  width : 300px;
+}
