@@ -187,14 +187,14 @@ li
   text-align: center;
 }
 
-.main_inner_text  .title 
+.main_inner_title 
 {
   font-weight: bold;
   font-size: 1.5em;
   color: #f9fcf6;
 }
 
-.main_inner_text .artist 
+.main_inner_text 
 {
   color: #080f21;
 }

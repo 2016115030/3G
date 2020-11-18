@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+
+
+
+<!-------------------------------------------
+
+
+  - total 6 data.
+    - random 6 data or top 6 data?
+  
+  - import chart data from db
+  
+  
+----------------------------------------------->
+
+
+
+
+<script>
+
+$(document).ready(function() {
+    
+    var apiKey = "2a83bf423ea1f964b8c430dca20805dc";
+    var artist = "";
+    var track = "";
+
+    // 임시 테스트용 데이터 삽입. imagine dragons - believer
+    artist += "imagine dragons";
+    track += "believer";
+
+    var url = "https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key="+apiKey+"&artist="+artist+"&track="+track+"&format=json";
+
+
+    $('.title1').append(track);
+    $('.artist1').append(artist);
+
+    $.getJSON(url, function(json) {
+
+        var coverHtml = "";
+
+        $.each(json, function(i, item) {
+            
+            var cover = item.album.image[2]['#text'];
+            coverHtml += "<img src="+cover+">";
+
+        });
+
+        $('.cover1').append(coverHtml);
+        
+    });
+});
+
+
+</script>
+<body>
+  <div id = "main_web">
+    <!-- 좌측 -->
+    <aside id = "main_left">
+      <!-- icon top -->
+      <div id = "main_top_icon">
+
+        <div class = "main_icon">
+					<img src = "img_icon/home.png" width="40" height="40">
+				</div>
+
+        <div class = "main_icon">
+					<img src = "img_icon/search.png" width="40" height="40">
+				</div>
+
+        <div class = "main_icon">
+					<img src = "img_icon/books.png" width="40" height="40">
+				</div>
+
+        <div class = "main_icon">
+					<img src = "img_icon/compass.png" width="40" height="40">
+				</div>
+
+      </div>
+
+      <!-- icon bottom -->
+      <div id = "main_bottom_icon">
+
+        <div class = "main_icon">
+					<img src = "img_icon/plus.png" width="40" height="40">
+				</div>
+
+        <div class = "main_icon">
+					<img src = "img_icon/setting.png" width="40" height="40">
+				</div>
+
+        <div class = "main_icon">
+
+				</div>
+
+      </div>
+
+    </aside>
+
+    <!-- 우측 -->
+    <div id = "main_right">
+
+      <!--상단 바-->
+      <div id = "main_top">
+
+        <div class = "main_logo">Logo Location</div>
+
+        <div class = "main_menu">
+          chart &nbsp;&nbsp;&nbsp;
+          chart &nbsp;&nbsp;&nbsp;
+          chart &nbsp;&nbsp;&nbsp;
+          chart &nbsp;&nbsp;&nbsp;
+          chart
+        </div>
+
+      </div>
+
+      <!--메인 컨텐츠-->
+      <div id = "main_content">
+
+        <!-- section 1 -->
+        <section id = "main_cont_1">
+
+          <div class = "main_text_1">My Feature ></div>
+
+          <div class = main_cont_box1> 1 </div>
+          <div class = main_cont_box2> 2 </div>
+          <div class = main_cont_box3> 3 </div>
+
+        </section>
+
+        <!-- section 2 -->
+        <section id = "main_cont_2">
+
+          <div class = "main_text_2">Based on your activity ></div>
+
+          <div class = "main_out_box">
+            <div class="main_inner_box">
+             <div class = "cover1"></div>
+            </div>
+            <div class="main_inner_text">
+              <div class="main_inner_title">
+                <p class="title1"></p>
+              </div>
+              <div class="main_inner_artist">
+                <p class="artist1"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class = "main_out_box">
+            <div class="main_inner_box">
+              <div class = "cover2"></div>
+            </div>
+            <div class="main_inner_text">
+              <div class="main_inner_title">
+                <p class="title2"></p>
+              </div>
+              <div class="main_inner_artist">
+                <p class="artist2"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class = "main_out_box">
+            <div class="main_inner_box">
+              <div class = "cover3"></div>
+            </div>
+            <div class="main_inner_text">
+              <div class="main_inner_title">
+                <p class="title3"></p>
+              </div>
+              <div class="main_inner_artist">
+                <p class="artist3"></p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class = "main_out_box">
+            <div class="main_inner_box">
+             <div class = "cover4"></div>
+            </div>
+            <div class="main_inner_text">
+              <div class="main_inner_title">
+                <p class="title4"></p>
+              </div>
+              <div class="main_inner_artist">
+                <p class="artist4"></p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class = "main_out_box">
+            <div class="main_inner_box">
+              <div class = "cover5"></div>
+            </div>
+            <div class="main_inner_text">
+              <div class="main_inner_title">
+                <p class="title5"></p>
+              </div>
+              <div class="main_inner_artist">
+                <p class="artist5"></p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class = "main_out_box">
+            <div class="main_inner_box">
+              <div class = "cover6"></div>
+            </div>
+            <div class="main_inner_text">
+              <div class="main_inner_title">
+                <p class="title6"></p>
+              </div>
+              <div class="main_inner_artist">
+                <p class="artist6"></p>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+      </div>
+
+
+    </div>
+
+  </div>
+</body>
+</html>
