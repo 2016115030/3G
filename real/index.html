@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+
+
+
+<script>
+
+$(document).ready(function(){
+   // DOM이 아직 로드되지 않았기에 ready 이벤트를 사용해야 함
+   // alert(jQuery('.test').text());
+
+      var response = $.post(
+      				"spotify.php",
+        	function(json) {
+    			var jsonData = JSON.parse(json); //JSON 문자열을 JSON object로 변환
+    			$(".test").html("JSON DATA (원본)") 
+    			$(".test").append("<hr>");
+    			$(".test").append("<p>"+json+"<p>");
+    			$(".test").append("<hr></br>");
+    			$(".test").append("<p>JSON Parsing ...</p>");
+    			$(".test").append("<hr>");
+				for (var i = 0; i < jsonData.length; i++) {
+					$(".test").append("<p>"+jsonData[i].position+" : "+jsonData[i].track_name+" : "+jsonData[i].artist+" : "+jsonData[i].streams+" : "+jsonData[i].url+"</p></br>");
+				};
+		    });
+    		//통신 실패시 리턴
+    		response.fail(function() {
+    			$(".test").html("오류가 발생했습니다 !!!<br>")
+    		});
+    		//통신 성공과 실패 상관없이 call
+    		response.always(function() {
+    			//$(".test").html("요청이 완료 !!!<br>")
+    		});
+    		return false;
+    });
+
+</script>
+
+
+
+
+<script>
+
+// $(document).ready(function() {
+    
+//     var apiKey = "2a83bf423ea1f964b8c430dca20805dc";
+//     var artist = "";
+//     var track = "";
+
+//     // 임시 테스트용 데이터 삽입. imagine dragons - believer
+//     artist += "imagine dragons";
+//     track += "believer";
+
+//     var url = "https://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key="+apiKey+"&artist="+artist+"&track="+track+"&format=json";
+
+
+//     $('.title1').append(track);
+//     $('.artist1').append(artist);
+
+//     $.getJSON(url, function(json) {
+
+//         var coverHtml = "";
+
+//         $.each(json, function(i, item) {
+            
+//             var cover = item.album.image[2]['#text'];
+//             coverHtml += "<img src="+cover+">";
+
+//         });
+
+//         $('.cover1').append(coverHtml);
+        
+//     });
+// });
+
+
+</script>
+<body>
+
+    <p class="test">before getting JSON data</p>
+</body>
+</html>
