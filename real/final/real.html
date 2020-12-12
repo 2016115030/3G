@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<script>
+
+$(document).ready(function() {
+  
+        var response = $.post("spotify.php", function(json) {
+            var jsonData = JSON.parse(json); 
+          
+            var title_p; var artist_p; var cover_div;
+          
+          
+            for (var i = 0; i < jsonData.length; i++) {
+          
+            var apikey = "2a83bf423ea1f964b8c430dca20805dc";
+            var artist = jsonData[i].artist;
+            var track = jsonData[i].track_name;
+
+            var apiArtist = artist;
+
+            var apiTrackFull = track;
+                apiTrackArray = apiTrackFull.split('(');
+                var apiTrack = apiTrackArray[0];
+            apiTrack = apiTrack.trim();
+
+            console.log(apiArtist, apiTrack);
+            
+            var url = "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=" + apikey + "&artist=" + apiArtist + "&album=" + apiTrack + "&format=json";
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(data) {
+
+                    var cover = data.album.image[2]['#text'];
+                    var coverHtml = '<img src="'+cover+'">';
+                    var track = data.album.name;
+                    var artist = data.album.artist;
+                        
+                    $('.main_out_box_big').append('<div class = "main_out_box"><div class="main_inner_box"><div class = "cover">'+coverHtml+'</div></div><div class="main_inner_text"><div class="main_inner_title"><p class="title">'+track+'</p></div><div class="main_inner_artist"><p class="artist">'+artist+'</p></div></div></div>');
+
+                }
+            })
+
+            };
+            
+                });
+                //통신 실패시 리턴
+                response.fail(function() {
+                    $(".test").html("오류가 발생했습니다 !!!<br>")
+                });
+                //통신 성공과 실패 상관없이 call
+                response.always(function() {
+                    //$(".test").html("요청이 완료 !!!<br>")
+                });
+                return false;
+    });
+
+
+
+</script>
+<body>
+
+  
+            <div class = "main_out_box_big">
+            </div>
+
+  
+</body>
+</html>
