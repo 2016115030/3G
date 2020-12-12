@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<script>
+    // 앨범, 아티스트, 트랙 필터
+    // 검색 시 해당 검색 결과 표시
+    
+    $(document).ready(function() {
+    var text = "";
+    var select = "";
+
+    $('#submit').click(function () {
+        text = $("#text").val();
+        select = $("#search_op option:selected").val();
+        $('#result').html('선택한 종류: ' + select); // result2에 select print
+        $('#result2').html('" '+text+' " 에 대한 검색 결과:'); // result에 text print
+        
+    
+        console.log(select, text);
+        
+            var apikey = "2a83bf423ea1f964b8c430dca20805dc"; // api key
+            var url = "";
+
+            if (select == "track") { 
+                url = "https://ws.audioscrobbler.com/2.0/?method=track.search&";
+                url += "track="+text+"&api_key="+apikey+"&format=json&limit=20";
+                console.log(url);
+                
+                
+                $.ajax({
+                url: url,
+                async : false,
+                success: function(data) {
+                    var html = '';
+                    $.each(data.results.trackmatches.track, function(i, item) {
+                        
+                        html += '<div class="result_track"><h3 class="tr">'+item.name+'</h3></div><div class="result_artist"><p class="ar">'+item.artist+'</p></div>';
+
+                    });
+                    $('#search_results').html(html);
+                }
+                    
+                })
+
+            } else if (select == "artist") {
+                url = "https://ws.audioscrobbler.com/2.0/?method=artist.search&";
+                url += "artist="+text+"&api_key="+apikey+"&format=json&limit=20";
+                console.log(url);
+                
+                
+                $.ajax({
+                url: url,
+                async : false,
+                success: function(data) {
+                    var html = '';
+                    $.each(data.results.artistmatches.artist, function(i, item) {
+                        
+                        html += '<div class="result_artist"><h3 class="tr">'+item.name+'</h3></div>';
+
+                    });
+                    $('#search_results').html(html);
+                }
+                    
+                })
+
+            } else if (select == "album") {
+                url = "https://ws.audioscrobbler.com/2.0/?method=album.search&";
+                url += "album="+text+"&api_key="+apikey+"&format=json&limit=20";
+                
+                $.ajax({
+                url: url,
+                async : false,
+                success: function(data) {
+                    var html = '';
+                    $.each(data.results.albummatches.album, function(i, item) {
+                        
+                        html += '<div class="result_track"><h3 class="tr">'+item.name+'</h3></div><div class="result_artist"><p class="ar">'+item.artist+'</p></div><div class=result_image><img src="'+item.image[2]['#text']+' ></div>"';
+
+                    });
+                    $('#search_results').html(html);
+                }
+                    
+                })
+
+            }
+
+        }); // click() finish
+
+    }); //document.ready finish
+</script>
+
+<body>
+    <h1>Search</h1>
+
+    <select name="search_op" id="search_op">
+        <option value="track">Track</option>
+        <option value="album">Album</option>
+        <option value="artist">Artist</option>
+    </select>
+
+    <input type="text" id="text" name="text" >
+    <button id="submit" onclick="click()">Submit</button>
+    
+    <p id="result">result</p>
+    <p id="result2">result</p>
+
+    <div id="search_results"></div>
+</body>
+
+</html>
