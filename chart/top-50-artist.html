@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<script>
+    // Chart : Top Artist 
+    
+    $(document).ready(function() {
+
+        const apikey = "2a83bf423ea1f964b8c430dca20805dc"; 
+        let url = 'https://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key='+apikey+'&format=json'
+
+        $.ajax({
+            url: url,
+            async : false,
+            success: function(data) {
+                let html = '';
+                $.each(data.artists.artist, function(i, item) {
+                    
+                    html += '<h3 class="result_artist">'+item.name+'</h3><p class="result_playCount">Play Count:'+item.playcount+'</p>';
+
+                });
+                $('.chart').html(html);
+            }
+
+            
+        })    
+        
+        })
+    
+        
+</script>
+
+<body>
+    <h1>Top 50 Artists</h1>
+
+    <div class="chart">
+
+    </div>
+</body>
+
+</html>
